@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Taskology
+A basic React-based todo list application. Allows creating tasks, marking as complete and clearing checked off tasks. Uses Bootstrap for CSS, and localStorage to store task states.
+
 You can see a live working demo @ https://app.developr.ca/taskology
 
 Requirements: React development environment, dependancies.
