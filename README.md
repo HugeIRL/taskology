@@ -2,6 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 You can see a live working demo @ https://app.developr.ca/taskology
 
+Requirements: React development environment, dependancies.
+
 ## Available Scripts
 
 In the project directory, you can run:
