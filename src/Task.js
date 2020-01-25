@@ -4,13 +4,18 @@ import EditableLabel from 'react-inline-edition'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Tasks({ task, toggleTask, handleTaskNameChange }) {
+
+    // Handle the click of the task checkbox
     function handleTaskClick() {
         toggleTask(task.id)
     }
+
+    // Pass the task to handle name change
     function passTextToTask(text)
     {
         handleTaskNameChange(task.id, text)
     }
+    
     return (
         <li className="list-group-item">
             <div className="form-check">

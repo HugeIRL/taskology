@@ -4,9 +4,11 @@ import uuidv4 from 'uuid/v4';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Local storage name for keeping track of tasks
 const LOCAL_STORAGE_KEY = 'TaskologyApp.tasks';
 
 function App() {
+
   const [tasks, setTasks] = useState([]);
   const taskNameRef = useRef();
 
@@ -29,23 +31,6 @@ function App() {
     task.complete = !task.complete
     setTasks(newTasks);
   }
-
-  // Check for empty string, then allow entry of a new task
-  // Also stop the form from refreshing the page
-  function addTask(e) {
-    const taskName = taskNameRef.current.value
-    if (taskName === '') return e.preventDefault()
-    setTasks(prevTask => {
-      return [...prevTask, { 
-                              id: uuidv4(), 
-                              name: taskName, 
-                              complete: false
-                  }]
-    })
-    taskNameRef.current.value = null
-
-    e.preventDefault()
-  };
 
   // Clear out all the tasks that are checked off
   function handleClearTasks() {
@@ -72,6 +57,23 @@ function App() {
     }
   };
 
+  // Check for empty string, then allow entry of a new task
+  // Also stopping the form from refreshing the page
+  function handleAddTask(e) {
+    const taskName = taskNameRef.current.value
+    if (taskName === '') return e.preventDefault()
+    setTasks(prevTask => {
+      return [...prevTask, { 
+                              id: uuidv4(), 
+                              name: taskName, 
+                              complete: false
+                  }]
+    })
+    taskNameRef.current.value = null
+
+    e.preventDefault()
+  };
+
   // Handle the changing of a task name by using FocusOut from EditableLabel
   function handleTaskNameChange(id, text) {
     const newTasks = [...tasks]
@@ -92,7 +94,7 @@ function App() {
               It starts with just one
             </p>
             <div className="card card-body my-3">
-              <form onSubmit={addTask} className="form">
+              <form onSubmit={handleAddTask} className="form">
               <div className="input-group">
                 <div className="input-group-prepend">
                   <div className="input-group-text bg-primary text-white">
@@ -109,7 +111,7 @@ function App() {
               </form>
               <button 
                 className="btn btn-block btn-primary mt-3"
-                onClick={addTask}
+                onClick={handleAddTask}
                 type="submit">
                   Add Task
               </button>
@@ -138,9 +140,9 @@ function App() {
           Made with &#10084; from Canada
           <br />
           Version 0.1.4 BETA
-        </p>
-      </>
-    );
+      </p>
+    </>
+  );
 }
 
 export default App;
